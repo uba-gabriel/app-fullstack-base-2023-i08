@@ -53,7 +53,7 @@ app.get('/devices/', function(req, res, next) {
             'name': 'Parlante 1', 
             'description': 'Parlante Living', 
             'state': 1, 
-            'type': 2, 
+            'type': 3, 
             
         },
     ]

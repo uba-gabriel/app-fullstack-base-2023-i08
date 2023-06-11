@@ -26,7 +26,7 @@ class Main implements EventListenerObject,HttpResponse {
                     if(disp.type==1){
                       item+=  '<img src="static/images/lightbulb.png" alt = "" class="circle" >'
                     } else if(disp.type==3) {
-                      item+=  '<img src="static/images/lightbulb.png" alt = "" class="circle" >'                       
+                      item+=  '<img src="static/images/bocina.png" alt = "" class="circle" >'                       
                     } else {
                         item+=  '<img src="static/images/window.png" alt = "" class="circle" >'
                     }
