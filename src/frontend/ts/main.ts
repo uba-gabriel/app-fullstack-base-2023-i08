@@ -25,6 +25,8 @@ class Main implements EventListenerObject,HttpResponse {
             var item: string = `<li class="collection-item avatar">`;
                     if(disp.type==1){
                       item+=  '<img src="static/images/lightbulb.png" alt = "" class="circle" >'
+                    } else if(disp.type==3) {
+                      item+=  '<img src="static/images/lightbulb.png" alt = "" class="circle" >'                       
                     } else {
                         item+=  '<img src="static/images/window.png" alt = "" class="circle" >'
                     }
@@ -123,11 +125,11 @@ window.addEventListener("load", () => {
     var btnListar: HTMLElement = document.getElementById("btnListar");
     btnListar.addEventListener("click", main);
 
-
-
-
     var btnAgregar: HTMLElement = document.getElementById("btnAgregar");
     btnAgregar.addEventListener("click", main);
+
+    var btnEliminar: HTMLElement = document.getElementById("btnEliminar");
+    btnEliminar.addEventListener("click", main);
 
     var btnLogin = document.getElementById("btnLogin");
     btnLogin.addEventListener("click", main);

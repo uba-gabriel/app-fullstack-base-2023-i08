@@ -48,6 +48,14 @@ app.get('/devices/', function(req, res, next) {
             'type': 2, 
             
         },
+        { 
+            'id': 3, 
+            'name': 'Parlante 1', 
+            'description': 'Parlante Living', 
+            'state': 1, 
+            'type': 2, 
+            
+        },
     ]
     res.send(JSON.stringify(devices)).status(200);
 });
