@@ -51,9 +51,7 @@ class Main implements EventListenerObject,HttpResponse {
                           </label>
                         </div>
                           </a>
-                        <div class="col s12 m4 l8 xl6 ">
-                        <button class="btn waves-effect waves-light button-view" id="btnEliminar">Eliminar</button>
-                    </div></li>`;
+                        </li>`;
             
             ulDisp.innerHTML += item;
         }
@@ -98,7 +96,9 @@ class Main implements EventListenerObject,HttpResponse {
                 alert("el nombre de usuario es invalido");
             }
         } else if (event.target.id == "btnEliminar") {
-            alert("El elemento " + elemento.id + " se elimina");
+            alert("El dispositivo " + elemento.checked + " se elimina");
+        } else if (event.target.id == "btnAgregar") {
+            alert("El dispositivo " + elemento.checked + " se agrega");
         } else if (elemento.id.startsWith("ck_")) {
             //Ir al backend y aviasrle que el elemento cambio de estado
             //TODO armar un objeto json con la clave id y status y llamar al metodo ejecutarBackend
