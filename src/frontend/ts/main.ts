@@ -72,6 +72,15 @@ class Main implements EventListenerObject,HttpResponse {
     }
     obtenerDispositivo() {
         this.framework.ejecutarBackEnd("GET", "http://localhost:8000/devices",this);
+    }    
+    obtenerDispositivo1() {
+        this.framework.ejecutarBackEnd("GET", "http://localhost:8000/devices1",this);
+    }
+    obtenerDispositivo2() {
+        this.framework.ejecutarBackEnd("GET", "http://localhost:8000/devices2",this);
+    }
+    obtenerDispositivo3() {
+        this.framework.ejecutarBackEnd("GET", "http://localhost:8000/devices3",this);
     }
 
     handleEvent(event) {
@@ -102,10 +111,31 @@ class Main implements EventListenerObject,HttpResponse {
             }
         } else if (event.target.id == "btnEliminar_1") {
             alert("El dispositivo se elimina");
+            this.obtenerDispositivo1();
+            for (var user of this.users) {
+
+                //TODO cambiar ESTO por mostrar estos datos separados por "-" 
+                //en un parrafo "etiqueta de tipo <p>"
+              
+            }
         } else if (event.target.id == "btnEliminar_2") {
             alert("El dispositivo se elimina");
+            this.obtenerDispositivo2();
+            for (var user of this.users) {
+
+                //TODO cambiar ESTO por mostrar estos datos separados por "-" 
+                //en un parrafo "etiqueta de tipo <p>"
+              
+            }
         } else if (event.target.id == "btnEliminar_3") {
             alert("El dispositivo se elimina");
+            this.obtenerDispositivo3();
+            for (var user of this.users) {
+
+                //TODO cambiar ESTO por mostrar estos datos separados por "-" 
+                //en un parrafo "etiqueta de tipo <p>"
+              
+            }
         } else if (event.target.id == "btnAgregar") {
             alert("El dispositivo se agrega");
         } else if (elemento.id.startsWith("ck_")) {
