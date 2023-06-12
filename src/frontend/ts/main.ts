@@ -35,6 +35,9 @@ class Main implements EventListenerObject,HttpResponse {
                           <p>
                           ${disp.description}
                           </p>
+                          <div class="col s12 m4 l8 xl6 ">
+                          <button class="btn waves-effect waves-light button-view" id="btnEliminar_${disp.type}">Eliminar</button>
+                          </div>
                           <a href="#!" class="secondary-content">
                           <div class="switch">
                           <label>
@@ -58,7 +61,9 @@ class Main implements EventListenerObject,HttpResponse {
         
         for (var disp of lista) {
             var checkPrender = document.getElementById("ck_" + disp.id);
+            var checkDel = document.getElementById("btnEliminar_" + disp.type);
             checkPrender.addEventListener("click", this);
+            checkDel.addEventListener("click", this);
 
             
 
@@ -95,10 +100,14 @@ class Main implements EventListenerObject,HttpResponse {
             } else {
                 alert("el nombre de usuario es invalido");
             }
-        } else if (event.target.id == "btnEliminar") {
-            alert("El dispositivo " + elemento.checked + " se elimina");
+        } else if (event.target.id == "btnEliminar_1") {
+            alert("El dispositivo se elimina");
+        } else if (event.target.id == "btnEliminar_2") {
+            alert("El dispositivo se elimina");
+        } else if (event.target.id == "btnEliminar_3") {
+            alert("El dispositivo se elimina");
         } else if (event.target.id == "btnAgregar") {
-            alert("El dispositivo " + elemento.checked + " se agrega");
+            alert("El dispositivo se agrega");
         } else if (elemento.id.startsWith("ck_")) {
             //Ir al backend y aviasrle que el elemento cambio de estado
             //TODO armar un objeto json con la clave id y status y llamar al metodo ejecutarBackend
@@ -131,8 +140,12 @@ window.addEventListener("load", () => {
     var btnAgregar: HTMLElement = document.getElementById("btnAgregar");
     btnAgregar.addEventListener("click", main);
 
-    var btnEliminar: HTMLElement = document.getElementById("btnEliminar");
-    btnEliminar.addEventListener("click", main);
+    var btnEliminar_1: HTMLElement = document.getElementById("btnEliminar_1");
+    btnEliminar_1.addEventListener("click", main);
+    var btnEliminar_2: HTMLElement = document.getElementById("btnEliminar_2");
+    btnEliminar_2.addEventListener("click", main);
+    var btnEliminar_3: HTMLElement = document.getElementById("btnEliminar_3");
+    btnEliminar_3.addEventListener("click", main);
 
     var btnLogin = document.getElementById("btnLogin");
     btnLogin.addEventListener("click", main);
