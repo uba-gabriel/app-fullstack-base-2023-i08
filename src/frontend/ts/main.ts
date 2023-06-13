@@ -36,7 +36,7 @@ class Main implements EventListenerObject,HttpResponse {
                           ${disp.description}
                           </p>
                           <div class="col s12 m4 l8 xl6 ">
-                          <button class="btn waves-effect waves-light button-view" id="btnEliminar_${disp.type}">Eliminar</button>
+                          <button class="btn waves-effect waves-light button-view" id="btnEliminar">Eliminar</button>
                           </div>
                           <a href="#!" class="secondary-content">
                           <div class="switch">
@@ -61,26 +61,16 @@ class Main implements EventListenerObject,HttpResponse {
         
         for (var disp of lista) {
             var checkPrender = document.getElementById("ck_" + disp.id);
-            var checkDel = document.getElementById("btnEliminar_" + disp.type);
             checkPrender.addEventListener("click", this);
-            checkDel.addEventListener("click", this);
-
-            
 
         }
         
     }
     obtenerDispositivo() {
-        this.framework.ejecutarBackEnd("GET", "http://localhost:8000/devices",this);
+        this.framework.ejecutarBackEnd("GET", "http://localhost:8000/displaydevices",this);
     }    
     obtenerDispositivo1() {
-        this.framework.ejecutarBackEnd("GET", "http://localhost:8000/devices1",this);
-    }
-    obtenerDispositivo2() {
-        this.framework.ejecutarBackEnd("GET", "http://localhost:8000/devices2",this);
-    }
-    obtenerDispositivo3() {
-        this.framework.ejecutarBackEnd("GET", "http://localhost:8000/devices3",this);
+        this.framework.ejecutarBackEnd("GET", "http://localhost:8000/devices",this);
     }
 
     handleEvent(event) {
@@ -109,27 +99,9 @@ class Main implements EventListenerObject,HttpResponse {
             } else {
                 alert("el nombre de usuario es invalido");
             }
-        } else if (event.target.id == "btnEliminar_1") {
+        } else if (event.target.id == "btnEliminar") {
             alert("El dispositivo se elimina");
             this.obtenerDispositivo1();
-            for (var user of this.users) {
-
-                //TODO cambiar ESTO por mostrar estos datos separados por "-" 
-                //en un parrafo "etiqueta de tipo <p>"
-              
-            }
-        } else if (event.target.id == "btnEliminar_2") {
-            alert("El dispositivo se elimina");
-            this.obtenerDispositivo2();
-            for (var user of this.users) {
-
-                //TODO cambiar ESTO por mostrar estos datos separados por "-" 
-                //en un parrafo "etiqueta de tipo <p>"
-              
-            }
-        } else if (event.target.id == "btnEliminar_3") {
-            alert("El dispositivo se elimina");
-            this.obtenerDispositivo3();
             for (var user of this.users) {
 
                 //TODO cambiar ESTO por mostrar estos datos separados por "-" 
@@ -170,12 +142,8 @@ window.addEventListener("load", () => {
     var btnAgregar: HTMLElement = document.getElementById("btnAgregar");
     btnAgregar.addEventListener("click", main);
 
-    var btnEliminar_1: HTMLElement = document.getElementById("btnEliminar_1");
-    btnEliminar_1.addEventListener("click", main);
-    var btnEliminar_2: HTMLElement = document.getElementById("btnEliminar_2");
-    btnEliminar_2.addEventListener("click", main);
-    var btnEliminar_3: HTMLElement = document.getElementById("btnEliminar_3");
-    btnEliminar_3.addEventListener("click", main);
+    var btnEliminar: HTMLElement = document.getElementById("btnEliminar");
+    btnEliminar.addEventListener("click", main);
 
     var btnLogin = document.getElementById("btnLogin");
     btnLogin.addEventListener("click", main);

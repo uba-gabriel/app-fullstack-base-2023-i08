@@ -24,10 +24,13 @@ app.post('/device/',function(req,res){
     }
     
 });
-app.get('/pepe/', function(req,res) {
+app.get('/displaydevices/', function(req,res) {
     utils.query("select * from Devices",function(err,rsp,fields){
-        if(err!=null)
+        if(err==null)
         res.send(JSON.stringify(rsp));
+    else{
+       res.status(409).send("error");
+    }
     });
   
 });
@@ -58,67 +61,6 @@ app.get('/devices/', function(req, res, next) {
         },
     ]
     res.send(JSON.stringify(devices)).status(200);
-});
-app.get('/devices1/', function(req, res, next) {
-    devices1 = [
-        { 
-            'id': 2, 
-            'name': 'Ventilador 1', 
-            'description': 'Ventilador Habitacion', 
-            'state': 1, 
-            'type': 2, 
-            
-        },
-        { 
-            'id': 3, 
-            'name': 'Parlante 1', 
-            'description': 'Parlante Living', 
-            'state': 1, 
-            'type': 3, 
-            
-        },
-    ]
-    res.send(JSON.stringify(devices1)).status(200);
-});
-app.get('/devices2/', function(req, res, next) {
-    devices2 = [
-        { 
-            'id': 1, 
-            'name': 'Lampara 1', 
-            'description': 'Luz living', 
-            'state': 0, 
-            'type': 1, 
-        },
-        { 
-            'id': 3, 
-            'name': 'Parlante 1', 
-            'description': 'Parlante Living', 
-            'state': 1, 
-            'type': 3, 
-            
-        },
-    ]
-    res.send(JSON.stringify(devices2)).status(200);
-});
-app.get('/devices3/', function(req, res, next) {
-    devices3 = [
-        { 
-            'id': 1, 
-            'name': 'Lampara 1', 
-            'description': 'Luz living', 
-            'state': 0, 
-            'type': 1, 
-        },
-        { 
-            'id': 2, 
-            'name': 'Ventilador 1', 
-            'description': 'Ventilador Habitacion', 
-            'state': 1, 
-            'type': 2, 
-            
-        },
-    ]
-    res.send(JSON.stringify(devices3)).status(200);
 });
 
 app.listen(PORT, function(req, res) {
