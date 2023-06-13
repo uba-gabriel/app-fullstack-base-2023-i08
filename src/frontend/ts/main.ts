@@ -23,9 +23,9 @@ class Main implements EventListenerObject,HttpResponse {
         var ulDisp = document.getElementById("listaDisp");
         for (var disp of lista) {
             var item: string = `<li class="collection-item avatar">`;
-                    if(disp.type==1){
+                    if(disp.type==0){
                       item+=  '<img src="static/images/lightbulb.png" alt = "" class="circle" >'
-                    } else if(disp.type==3) {
+                    } else if(disp.type==2) {
                       item+=  '<img src="static/images/bocina.png" alt = "" class="circle" >'                       
                     } else {
                         item+=  '<img src="static/images/window.png" alt = "" class="circle" >'
