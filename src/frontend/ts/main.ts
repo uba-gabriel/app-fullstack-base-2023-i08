@@ -65,10 +65,12 @@ class Main implements EventListenerObject,HttpResponse {
         }
         
         for (var disp of lista) {
+            if(disp.state!=2){
             var checkPrender = document.getElementById("ck_" + disp.id);
             var checkEliminar = document.getElementById("btnEliminar_" + disp.id);
             checkPrender.addEventListener("click", this);
             checkEliminar.addEventListener("click", this);
+            }
         }
         
     }
@@ -114,6 +116,7 @@ class Main implements EventListenerObject,HttpResponse {
             alert("El elemento " + elemento.id + " cambia de estado a =" + elemento.checked);
         } else if (elemento.id.startsWith("btnEliminar_")) {
             alert("El dispositivo "+ elemento.id +" se elimina");
+
             this.obtenerDispositivo1();
             for (var user of this.users) {
 

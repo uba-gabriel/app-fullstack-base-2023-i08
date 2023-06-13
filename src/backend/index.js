@@ -35,13 +35,26 @@ app.get('/displaydevices/', function(req,res) {
   
 });
 app.post('/displaydevices/', function(req,res) {
-    utils.query("select * from Devices",function(err,rsp,fields){
-        if(err==null)
-        res.send(JSON.stringify(rsp));
-    else{
-       res.status(409).send("error");
-    }
-    });
+
+                    // Realiza la operación de actualización en la base de datos
+                utils.query(
+                  'UPDATE Devices SET state = ? WHERE id = ?',
+                  [2, 1],
+                  (error, results) => {
+                    if (error) {
+                      console.error('Error al actualizar la fila:', error);
+                      res.status(409);
+                    } else {
+                        utils.query("select * from Devices",function(err,rsp,fields){
+                            if(err==null)
+                            res.send(JSON.stringify(rsp));
+                        else{
+                           res.status(409).send("error");
+                        }
+                        });
+                    }
+                  }
+                );
   
 });
 app.get('/devices/', function(req, res, next) {
