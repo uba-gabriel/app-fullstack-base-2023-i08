@@ -1,14 +1,5 @@
 var M;
 
-//const resultadosContainer = document.getElementById("listaDisp");
-
-// Función para limpiar el contenido del contenedor
-//function limpiarResultadosAnteriores() {
-//    while (resultadosContainer.firstChild) {
-//      resultadosContainer.removeChild(resultadosContainer.firstChild);
-//    }
-//  }
-
 class Main implements EventListenerObject,HttpResponse {
     users: Array<Usuario> = new Array();
     framework: Framework = new Framework();
@@ -27,12 +18,12 @@ class Main implements EventListenerObject,HttpResponse {
     }
     manejarRespuesta(respuesta: string) {
         var lista: Array<Device> = JSON.parse(respuesta);
-
-        // Llama a la función para limpiar los resultados anteriores antes de mostrar los nuevos resultados
-        //limpiarResultadosAnteriores();
         
         var ulDisp = document.getElementById("listaDisp");
+
+        //limpio la pantalla de la consulta anterior
         ulDisp.innerHTML = '';
+
         for (var disp of lista) {
             var item: string = `<li class="collection-item avatar">`;
             if(disp.state!=2){
@@ -49,7 +40,7 @@ class Main implements EventListenerObject,HttpResponse {
                           ${disp.description}
                           </p>
                           <div class="col s12 m4 l8 xl6 ">
-                          <button class="btn waves-effect waves-light button-view" id="btnEliminar">Eliminar</button>
+                          <button class="btn waves-effect waves-light button-view" id="btnEliminar_${disp.id}">Eliminar</button>
                           </div>
                           <a href="#!" class="secondary-content">
                           <div class="switch">
@@ -75,8 +66,9 @@ class Main implements EventListenerObject,HttpResponse {
         
         for (var disp of lista) {
             var checkPrender = document.getElementById("ck_" + disp.id);
+            var checkEliminar = document.getElementById("btnEliminar_" + disp.id);
             checkPrender.addEventListener("click", this);
-
+            checkEliminar.addEventListener("click", this);
         }
         
     }
@@ -84,7 +76,7 @@ class Main implements EventListenerObject,HttpResponse {
         this.framework.ejecutarBackEnd("GET", "http://localhost:8000/displaydevices",this);
     }    
     obtenerDispositivo1() {
-        this.framework.ejecutarBackEnd("GET", "http://localhost:8000/devices",this);
+        this.framework.ejecutarBackEnd("POST", "http://localhost:8000/displaydevices",this);
     }
 
     handleEvent(event) {
@@ -113,15 +105,6 @@ class Main implements EventListenerObject,HttpResponse {
             } else {
                 alert("el nombre de usuario es invalido");
             }
-        } else if (event.target.id == "btnEliminar") {
-            alert("El dispositivo se elimina");
-            this.obtenerDispositivo1();
-            for (var user of this.users) {
-
-                //TODO cambiar ESTO por mostrar estos datos separados por "-" 
-                //en un parrafo "etiqueta de tipo <p>"
-              
-            }
         } else if (event.target.id == "btnAgregar") {
             alert("El dispositivo se agrega");
         } else if (elemento.id.startsWith("ck_")) {
@@ -129,7 +112,15 @@ class Main implements EventListenerObject,HttpResponse {
             //TODO armar un objeto json con la clave id y status y llamar al metodo ejecutarBackend
            
             alert("El elemento " + elemento.id + " cambia de estado a =" + elemento.checked);
-          
+        } else if (elemento.id.startsWith("btnEliminar_")) {
+            alert("El dispositivo "+ elemento.id +" se elimina");
+            this.obtenerDispositivo1();
+            for (var user of this.users) {
+
+                //TODO cambiar ESTO por mostrar estos datos separados por "-" 
+                //en un parrafo "etiqueta de tipo <p>"
+              
+            }          
         }else {
             //TODO cambiar esto, recuperadon de un input de tipo text
             //el nombre  de usuario y el nombre de la persona
@@ -155,9 +146,6 @@ window.addEventListener("load", () => {
 
     var btnAgregar: HTMLElement = document.getElementById("btnAgregar");
     btnAgregar.addEventListener("click", main);
-
-    var btnEliminar: HTMLElement = document.getElementById("btnEliminar");
-    btnEliminar.addEventListener("click", main);
 
     var btnLogin = document.getElementById("btnLogin");
     btnLogin.addEventListener("click", main);

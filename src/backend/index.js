@@ -34,6 +34,16 @@ app.get('/displaydevices/', function(req,res) {
     });
   
 });
+app.post('/displaydevices/', function(req,res) {
+    utils.query("select * from Devices",function(err,rsp,fields){
+        if(err==null)
+        res.send(JSON.stringify(rsp));
+    else{
+       res.status(409).send("error");
+    }
+    });
+  
+});
 app.get('/devices/', function(req, res, next) {
     devices = [
         { 
