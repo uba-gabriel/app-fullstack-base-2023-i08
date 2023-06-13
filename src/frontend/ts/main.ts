@@ -81,7 +81,7 @@ class Main implements EventListenerObject,HttpResponse {
 
     handleEvent(event) {
         var elemento =<HTMLInputElement> event.target;
-        console.log(elemento)
+        //console.log(elemento)
         if (event.target.id == "btnListar") {
             this.obtenerDispositivo();
             for (var user of this.users) {
