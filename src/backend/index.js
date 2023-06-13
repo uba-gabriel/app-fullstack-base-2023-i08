@@ -25,7 +25,7 @@ app.post('/device/',function(req,res){
     
 });
 app.get('/displaydevices/', function(req,res) {
-    utils.query("select * from Devices",function(err,rsp,fields){
+    utils.query("select * from Devices where state <> 2",function(err,rsp,fields){
         if(err==null)
         res.send(JSON.stringify(rsp));
     else{
@@ -45,7 +45,7 @@ app.post('/displaydevices/', function(req,res) {
                       console.error('Error al actualizar la fila:', error);
                       res.status(409);
                     } else {
-                        utils.query("select * from Devices",function(err,rsp,fields){
+                        utils.query("select * from Devices where state <> 2",function(err,rsp,fields){
                             if(err==null)
                             res.send(JSON.stringify(rsp));
                         else{
