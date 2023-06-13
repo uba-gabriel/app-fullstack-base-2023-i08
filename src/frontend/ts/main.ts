@@ -1,5 +1,14 @@
 var M;
 
+//const resultadosContainer = document.getElementById("listaDisp");
+
+// Función para limpiar el contenido del contenedor
+//function limpiarResultadosAnteriores() {
+//    while (resultadosContainer.firstChild) {
+//      resultadosContainer.removeChild(resultadosContainer.firstChild);
+//    }
+//  }
+
 class Main implements EventListenerObject,HttpResponse {
     users: Array<Usuario> = new Array();
     framework: Framework = new Framework();
@@ -16,13 +25,17 @@ class Main implements EventListenerObject,HttpResponse {
         //alert(JSON.stringify(obj));
 
     }
-    manejarRespueta(respueta: string) {
-        var lista: Array<Device> = JSON.parse(respueta);
+    manejarRespuesta(respuesta: string) {
+        var lista: Array<Device> = JSON.parse(respuesta);
 
+        // Llama a la función para limpiar los resultados anteriores antes de mostrar los nuevos resultados
+        //limpiarResultadosAnteriores();
         
         var ulDisp = document.getElementById("listaDisp");
+        ulDisp.innerHTML = '';
         for (var disp of lista) {
             var item: string = `<li class="collection-item avatar">`;
+            if(disp.state!=2){
                     if(disp.type==0){
                       item+=  '<img src="static/images/lightbulb.png" alt = "" class="circle" >'
                     } else if(disp.type==2) {
@@ -30,7 +43,7 @@ class Main implements EventListenerObject,HttpResponse {
                     } else {
                         item+=  '<img src="static/images/window.png" alt = "" class="circle" >'
                     }
-                          
+                    
                         item+=`<span class="titulo">${disp.name}</span>
                           <p>
                           ${disp.description}
@@ -43,7 +56,7 @@ class Main implements EventListenerObject,HttpResponse {
                           <label>
                             Off
                             `;
-                            if (disp.state) {
+                            if (disp.state==0) {
                                 item +=`<input type="checkbox" checked id="ck_${disp.id}">`;
                             } else {
                                 item +=`<input type="checkbox" id="ck_${disp.id}" >`;
@@ -55,6 +68,7 @@ class Main implements EventListenerObject,HttpResponse {
                         </div>
                           </a>
                         </li>`;
+            }
             
             ulDisp.innerHTML += item;
         }
@@ -79,7 +93,7 @@ class Main implements EventListenerObject,HttpResponse {
         if (event.target.id == "btnListar") {
             this.obtenerDispositivo();
             for (var user of this.users) {
-
+                
                 //TODO cambiar ESTO por mostrar estos datos separados por "-" 
                 //en un parrafo "etiqueta de tipo <p>"
               

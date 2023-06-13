@@ -1,4 +1,4 @@
 interface HttpResponse{
 
-  manejarRespueta(response: string);
+  manejarRespuesta(response: string);
 }

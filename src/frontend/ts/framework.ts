@@ -6,7 +6,7 @@ class Framework{
         if (xmlReq.readyState == 4) {
           if (xmlReq.status == 200) {
             console.log("llego "+xmlReq.responseText)
-              callback.manejarRespueta(xmlReq.responseText);
+              callback.manejarRespuesta(xmlReq.responseText);
             } else {
                 alert("Error al buscar los datos!");
             }
