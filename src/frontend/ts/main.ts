@@ -70,7 +70,7 @@ class Main implements EventListenerObject,HttpResponse {
             var checkEliminar = document.getElementById("btnEliminar_" + disp.id);
             checkPrender.addEventListener("click", this);
             checkEliminar.addEventListener("click", this);
-            }
+        }
         }
         
     }
