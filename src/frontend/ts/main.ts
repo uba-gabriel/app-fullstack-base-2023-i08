@@ -40,7 +40,9 @@ class Main implements EventListenerObject,HttpResponse {
                           ${disp.description}
                           </p>
                           <div class="col s12 m4 l8 xl6 ">
+                          <p align="right"> 
                           <button id="btnEliminar_${disp.id}">Eliminar</button>
+                          </p>
                           </div>
                           <a href="#!" class="secondary-content">
                           <div class="switch">

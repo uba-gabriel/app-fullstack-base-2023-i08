@@ -35,7 +35,6 @@ app.get('/displaydevices/', function(req,res) {
   
 });
 app.post('/updatedevices/', function(req,res) {
-
                     // Realiza la operación de actualización en la base de datos
                 utils.query(
                   'UPDATE Devices SET state = ? WHERE id = ?',
@@ -85,6 +84,10 @@ app.get('/devices/', function(req, res, next) {
     ]
     res.send(JSON.stringify(devices)).status(200);
 });
+
+function getDeviceIdAsNumber(id){
+    return parseInt(id)
+}
 
 app.listen(PORT, function(req, res) {
     console.log("NodeJS API running correctly");
