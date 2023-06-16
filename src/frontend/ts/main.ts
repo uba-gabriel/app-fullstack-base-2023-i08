@@ -79,9 +79,9 @@ class Main implements EventListenerObject,HttpResponse {
     obtenerDispositivo() {
         this.framework.ejecutarBackEnd("GET", "http://localhost:8000/displaydevices",this);
     }    
-    actualizarDispositivo() {
+    /*actualizarDispositivo() {
         this.framework.ejecutarBackEnd("POST", "http://localhost:8000/updatedevices",this);
-    }
+    }*/
 
     handleEvent(event) {
         var elemento =<HTMLInputElement> event.target;
@@ -118,8 +118,9 @@ class Main implements EventListenerObject,HttpResponse {
             alert("El elemento " + elemento.id + " cambia de estado a =" + elemento.checked);
         } else if (elemento.id.startsWith("btnEliminar_")) {
             alert("El dispositivo "+ elemento.id +" se elimina");
-
-            this.actualizarDispositivo();
+            var id = elemento.id.replace("btnEliminar_", "");
+            this.framework.ejecutarBackEnd("POST", "http://localhost:8000/updatedevices",this,{id: id});
+            //this.actualizarDispositivo();
             for (var user of this.users) {
 
                 //TODO cambiar ESTO por mostrar estos datos separados por "-" 

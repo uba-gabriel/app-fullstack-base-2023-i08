@@ -37,8 +37,7 @@ app.get('/displaydevices/', function(req,res) {
 app.post('/updatedevices/', function(req,res) {
                     // Realiza la operación de actualización en la base de datos
                 utils.query(
-                  'UPDATE Devices SET state = ? WHERE id = ?',
-                  [2, 1],
+                  "UPDATE Devices SET state = 2 WHERE id=" + req.body.id,
                   (error, results) => {
                     if (error) {
                       console.error('Error al actualizar la fila:', error);
