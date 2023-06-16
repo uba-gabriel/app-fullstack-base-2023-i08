@@ -40,7 +40,7 @@ class Main implements EventListenerObject,HttpResponse {
                           ${disp.description}
                           </p>
                           <div class="col s12 m4 l8 xl6 ">
-                          <button class="btn waves-effect waves-light button-view" id="btnEliminar_${disp.id}">Eliminar</button>
+                          <button id="btnEliminar_${disp.id}">Eliminar</button>
                           </div>
                           <a href="#!" class="secondary-content">
                           <div class="switch">
