@@ -77,8 +77,8 @@ class Main implements EventListenerObject,HttpResponse {
     obtenerDispositivo() {
         this.framework.ejecutarBackEnd("GET", "http://localhost:8000/displaydevices",this);
     }    
-    obtenerDispositivo1() {
-        this.framework.ejecutarBackEnd("POST", "http://localhost:8000/displaydevices",this);
+    actualizarDispositivo() {
+        this.framework.ejecutarBackEnd("POST", "http://localhost:8000/updatedevices",this);
     }
 
     handleEvent(event) {
@@ -117,7 +117,7 @@ class Main implements EventListenerObject,HttpResponse {
         } else if (elemento.id.startsWith("btnEliminar_")) {
             alert("El dispositivo "+ elemento.id +" se elimina");
 
-            this.obtenerDispositivo1();
+            this.actualizarDispositivo();
             for (var user of this.users) {
 
                 //TODO cambiar ESTO por mostrar estos datos separados por "-" 

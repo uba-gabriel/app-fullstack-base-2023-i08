@@ -34,7 +34,7 @@ app.get('/displaydevices/', function(req,res) {
     });
   
 });
-app.post('/displaydevices/', function(req,res) {
+app.post('/updatedevices/', function(req,res) {
 
                     // Realiza la operación de actualización en la base de datos
                 utils.query(
