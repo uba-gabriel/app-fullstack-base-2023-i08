@@ -34,13 +34,36 @@ app.get('/displaydevices/', function(req,res) {
     });
   
 });
-app.post('/updatedevices/', function(req,res) {
+
+app.post('/deletedevices/', function(req,res) {
+    // Realiza la operación de actualización en la base de datos
+utils.query(
+  "DELETE FROM Devices WHERE id=" + req.body.id,
+  (error, results) => {
+    if (error) {
+      console.error('Error al eliminar.', error);
+      res.status(409);
+    } else {
+        utils.query("select * from Devices where state <> 2",function(err,rsp,fields){
+            if(err==null)
+            res.send(JSON.stringify(rsp));
+        else{
+           res.status(409).send("error");
+        }
+        });
+    }
+  }
+);
+
+});
+
+app.post('/putdowndevices/', function(req,res) {
                     // Realiza la operación de actualización en la base de datos
                 utils.query(
                   "UPDATE Devices SET state = 2 WHERE id=" + req.body.id,
                   (error, results) => {
                     if (error) {
-                      console.error('Error al actualizar la fila:', error);
+                      console.error('Error al dar de baja.', error);
                       res.status(409);
                     } else {
                         utils.query("select * from Devices where state <> 2",function(err,rsp,fields){
@@ -62,7 +85,7 @@ utils.query(
   "UPDATE Devices SET state = "+ req.body.tecla +" WHERE id= " + req.body.id,
   (error, results) => {
     if (error) {
-      console.error('Error al actualizar la fila:', error);
+      console.error('Error al cambiar estado.', error);
       res.status(409);
     } else {
         utils.query("select * from Devices where state <> 2",function(err,rsp,fields){
@@ -106,10 +129,6 @@ app.get('/devices/', function(req, res, next) {
     ]
     res.send(JSON.stringify(devices)).status(200);
 });
-
-function getDeviceIdAsNumber(id){
-    return parseInt(id)
-}
 
 app.listen(PORT, function(req, res) {
     console.log("NodeJS API running correctly");
