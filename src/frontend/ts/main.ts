@@ -49,7 +49,7 @@ class Main implements EventListenerObject,HttpResponse {
                           <label>
                             Off
                             `;
-                            if (disp.state==0) {
+                            if (disp.state==1) {
                                 item +=`<input type="checkbox" checked id="ck_${disp.id}">`;
                             } else {
                                 item +=`<input type="checkbox" id="ck_${disp.id}" >`;
@@ -78,6 +78,9 @@ class Main implements EventListenerObject,HttpResponse {
     }
     obtenerDispositivo() {
         this.framework.ejecutarBackEnd("GET", "http://localhost:8000/displaydevices",this);
+    }    
+    obtenerBajasDispositivo() {
+        this.framework.ejecutarBackEnd("GET", "http://localhost:8000/displaydowndevices",this);
     }    
     bajarDispositivo(ident) {
         this.framework.ejecutarBackEnd("POST", "http://localhost:8000/putdowndevices",this,ident);
@@ -123,10 +126,10 @@ class Main implements EventListenerObject,HttpResponse {
             var id = elemento.id.replace("ck_", "");
             if (elemento.checked) {
                 var estado = "Encendido";
-                var tecla = 0;
+                var tecla = 1;
             }else{
                 var estado = "Apagado"; 
-                var tecla = 1;
+                var tecla = 0;
             } 
 
             this.teclaDispositivo({id: id, tecla: tecla});
@@ -141,12 +144,12 @@ class Main implements EventListenerObject,HttpResponse {
                 //en un parrafo "etiqueta de tipo <p>"
               
             }          
-        }else {
+        /*}else {
             //TODO cambiar esto, recuperadon de un input de tipo text
             //el nombre  de usuario y el nombre de la persona
             // validando que no sean vacios
             console.log("yendo al back");
-            this.framework.ejecutarBackEnd("POST", "http://localhost:8000/device", this, {});
+            this.framework.ejecutarBackEnd("POST", "http://localhost:8000/device", this, {});*/
            
         }
     }

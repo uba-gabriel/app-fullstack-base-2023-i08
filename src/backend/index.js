@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(express.static('/home/node/app/static/'));
 
 //=======[ Main module code ]==================================================
-app.post('/device/',function(req,res){
+/*app.post('/device/',function(req,res){
     console.log("llego = "+req.body.id);
     if(req.body.texto==undefined || req.body.texto==null || req.body.texto.length<4){
         res.status(409);
@@ -23,9 +23,20 @@ app.post('/device/',function(req,res){
         res.send("Todo ok");
     }
     
-});
+});*/
 app.get('/displaydevices/', function(req,res) {
     utils.query("select * from Devices where state <> 2",function(err,rsp,fields){
+        if(err==null)
+        res.send(JSON.stringify(rsp));
+    else{
+       res.status(409).send("error");
+    }
+    });
+  
+});
+
+app.get('/displaydowndevices/', function(req,res) {
+    utils.query("select * from Devices where state = 2",function(err,rsp,fields){
         if(err==null)
         res.send(JSON.stringify(rsp));
     else{
@@ -101,7 +112,7 @@ utils.query(
 
 });
 
-app.get('/devices/', function(req, res, next) {
+/*app.get('/devices/', function(req, res, next) {
     devices = [
         { 
             'id': 1, 
@@ -128,7 +139,7 @@ app.get('/devices/', function(req, res, next) {
         },
     ]
     res.send(JSON.stringify(devices)).status(200);
-});
+});*/
 
 app.listen(PORT, function(req, res) {
     console.log("NodeJS API running correctly");
