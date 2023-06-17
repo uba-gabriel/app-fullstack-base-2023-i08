@@ -79,9 +79,12 @@ class Main implements EventListenerObject,HttpResponse {
     obtenerDispositivo() {
         this.framework.ejecutarBackEnd("GET", "http://localhost:8000/displaydevices",this);
     }    
-    /*actualizarDispositivo() {
-        this.framework.ejecutarBackEnd("POST", "http://localhost:8000/updatedevices",this);
-    }*/
+    bajarDispositivo(ident) {
+        this.framework.ejecutarBackEnd("POST", "http://localhost:8000/updatedevices",this,ident);
+    }
+    teclaDispositivo(presiona) {
+        this.framework.ejecutarBackEnd("POST", "http://localhost:8000/changedevices",this,presiona);
+    }
 
     handleEvent(event) {
         var elemento =<HTMLInputElement> event.target;
@@ -114,13 +117,21 @@ class Main implements EventListenerObject,HttpResponse {
         } else if (elemento.id.startsWith("ck_")) {
             //Ir al backend y aviasrle que el elemento cambio de estado
             //TODO armar un objeto json con la clave id y status y llamar al metodo ejecutarBackend
-           
-            alert("El elemento " + elemento.id + " cambia de estado a =" + elemento.checked);
+            var id = elemento.id.replace("ck_", "");
+            if (elemento.checked) {
+                var estado = "Encendido";
+                var tecla = 0;
+            }else{
+                var estado = "Apagado"; 
+                var tecla = 1;
+            } 
+
+            this.teclaDispositivo({id: id, tecla: tecla});
+            alert("El dispositivo cambia de estado a " + estado);
         } else if (elemento.id.startsWith("btnEliminar_")) {
-            alert("El dispositivo "+ elemento.id +" se elimina");
             var id = elemento.id.replace("btnEliminar_", "");
-            this.framework.ejecutarBackEnd("POST", "http://localhost:8000/updatedevices",this,{id: id});
-            //this.actualizarDispositivo();
+            this.bajarDispositivo({id: id});
+            alert("El dispositivo se elimina de la lista.");
             for (var user of this.users) {
 
                 //TODO cambiar ESTO por mostrar estos datos separados por "-" 
