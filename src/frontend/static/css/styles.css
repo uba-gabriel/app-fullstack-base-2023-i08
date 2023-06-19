@@ -9,7 +9,22 @@ main {
     flex: 1 0 auto;
 }
 .titulo{
-    color: brown;
+    color: rgb(8, 52, 197);
+    font-weight: bold;
+    font-size: large;
+}
+.subtitulo{
+    color: rgb(22, 22, 22);
+    font-weight: bold;
+    font-size: large;
+}
+.titulolistasa{
+    color: rgb(1, 80, 16);
+    font-weight: bold;
+    font-size: large;
+}
+.titulolistasb{
+    color: rgb(255, 0, 0);
     font-weight: bold;
     font-size: large;
 }

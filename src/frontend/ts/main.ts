@@ -79,7 +79,7 @@ class Main implements EventListenerObject,HttpResponse {
     manejarRespuesta2(respuesta: string) {
         var lista: Array<Device> = JSON.parse(respuesta);
         
-        var ulDisp = document.getElementById("listaRadio");
+        var ulDisp = document.getElementById("listaBajas");
 
         //limpio la pantalla de la consulta anterior
         ulDisp.innerHTML = '';
@@ -88,7 +88,7 @@ class Main implements EventListenerObject,HttpResponse {
             var item: string = `<li class="collection-item avatar">`;
             if(disp.state==2){
  
-                item+=`<span class="titulo">${disp.name}</span>
+                item+=`<span class="subtitulo">${disp.name}</span>
                 <p>
                 ${disp.description}
                 </p>
