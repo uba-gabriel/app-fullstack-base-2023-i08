@@ -176,7 +176,7 @@ framework.ts
 device.ts
 httpResponse.ts
 
-Se agrega una imagen nueva para usar en el dispositivo "Parlante 1".
+Se agrega una imagen nueva para usar en el dispositivo "Parlante 1" llamada "bocina.png".
 Se modifica el archivo styles.css para otros formatos.
 Se agrega una funcionalidad al botón "Listar" para que efectue una sentencia de "Select" en la base de datos.
 Se agregan los botones "Eliminar" y "Agregar". Los mismos efectuarán sentencias de "Update" en la base de datos, permitiendo cambiar el estado de los dispositivos de Alta(Devices.state <> 2) a Baja(Devices.state = 2) o viceversa.
@@ -193,25 +193,33 @@ Se edita el archivo index.js
 
 Completá todos los endpoints del backend con los metodos disponibles, los headers y body que recibe, lo que devuelve, ejemplos, etc.
 
-1) Devolver el estado de los dispositivos.
+1) Devolver el estado de los dispositivos activos.
 
-```json
-{
-    "method": "get",
-    "request_headers": "application/json",
-    "request_body": "",
-    "response_code": 200,
-    "request_body": {
-        "devices": [
-            {
-                "id": 1,
-                "status": true,
-                "description": "Kitchen light"
-            }
-        ]
-    },
-}
-``` 
+app.get('/displaydevices/', function(req,res)
+
+2) Devolver el estado de los dispositivos de baja.
+
+app.get('/displaydowndevices/', function(req,res)
+
+3) Configurar el estado del dispositivos en baja.
+
+app.post('/putdowndevices/', function(req,res)
+
+4) Configurar el estado del dispositivos en alta.
+
+app.post('/putupdevices/', function(req,res)
+
+5) Configurar el estado del dispositivos en encendido o apagado.
+
+app.post('/changedevices/', function(req,res)
+
+6) Eliminar el dispositivo.
+
+app.post('/deletedevices/', function(req,res)
+
+7) Insertar el dispositivo.
+
+app.post('/insertdevices/', function(req,res)
 
 </details>
 
