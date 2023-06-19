@@ -156,8 +156,9 @@ En la siguiente ilustración podés ver cómo está organizado el proyecto para 
 En esta sección podés ver los detalles específicos de funcionamiento del código y que son los siguientes.
 La aplicación fue editada para permitir listar y además dar de alta y baja los dispositivos registrados en la base de datos.
 Con el botón listar se podrán ver dos listas, una lista de dispositivos dados de alta y otra lista de dispositivos dados de baja. 
-En total el universo de dispositivos es de seis dispositivos. 
-No se agregan ni se quitan los mismos de la base de datos. 
+En total el universo de dispositivos de la base de datos es de seis dispositivos en principio. 
+La base de datos original fue modificada, se cambia un dispositvo por el dispositivo "Parlante 1".
+Además se pueden Insertar y Borrar dispositivos de la base de datos. 
 La base de datos fue modificada, se cambia un dispositvo por el dispositivo "Parlante 1".
 
 <details><summary><b>Mira los detalles de implementación</b></summary><br>
@@ -184,9 +185,10 @@ Se agregan los archivos:
 Se agrega una imagen nueva para usar en el dispositivo "Parlante 1" llamada "bocina.png".
 Se modifica el archivo styles.css para otros formatos de texto.
 Se agrega una funcionalidad al botón "Listar" para que efectue una sentencia de "Select" en la base de datos.
-Se agregan los botones "Eliminar" y "Agregar". Los mismos efectuarán sentencias de "Update" en la base de datos, permitiendo cambiar el estado de los dispositivos de Alta(Devices.state <> 2) a Baja(Devices.state = 2) o viceversa.
-Se agrega una funcionalidad al Switch de los dispositivos para que efectue una sentencia de "Update" en la base de datos. Se cambia el estado de Activo(Devices.state = 1) a Inactivo(Devices.state = 0) o viceversa.
+Se agregan los botones "Dar de baja" y "Dar de alta". Los mismos efectuarán sentencias de "Update" en la base de datos, permitiendo cambiar el estado de los dispositivos de Alta(Devices.state <> 2) a Baja(Devices.state = 2) o viceversa.
+Se agrega una funcionalidad al Switch de los dispositivos para que efectue una sentencia de "Update" en la base de datos. Se cambia el estado de Encendido(Devices.state = 1) a Apagado(Devices.state = 0) o viceversa.
 Se corrige que se muestren las listas en forma adicionada.
+Se agrega un formulario para agregar dispositivos y otro para borrar dispositivos de la base de datos.
 
 ### Backend
 
@@ -199,7 +201,7 @@ Se edita el archivo ./db/dumps/smart_home.sql
 
 Completá todos los endpoints del backend con los metodos disponibles, los headers y body que recibe, lo que devuelve, ejemplos, etc.
 
-En el archivo ./src/backend/index.js se agregan las siguientes interacciones:
+En el archivo ./src/backend/index.js se agregan las siguientes interacciones con métodos:
 
 1) Devolver el estado de los dispositivos activos.
 
@@ -209,23 +211,23 @@ app.get('/displaydevices/', function(req,res)
 
 app.get('/displaydowndevices/', function(req,res)
 
-3) Configurar el estado del dispositivos en baja.
+3) Configurar el estado de un dispositivo en baja.
 
 app.post('/putdowndevices/', function(req,res)
 
-4) Configurar el estado del dispositivos en alta.
+4) Configurar el estado de un dispositivo en alta.
 
 app.post('/putupdevices/', function(req,res)
 
-5) Configurar el estado del dispositivos en encendido o apagado.
+5) Configurar el estado del dispositivo en encendido o apagado.
 
 app.post('/changedevices/', function(req,res)
 
-6) Eliminar el dispositivo.
+6) Borrar el dispositivo de la base de datos.
 
 app.post('/deletedevices/', function(req,res)
 
-7) Insertar el dispositivo.
+7) Insertar el dispositivo en la base de datos.
 
 app.post('/insertdevices/', function(req,res)
 
