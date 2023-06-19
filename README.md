@@ -199,7 +199,7 @@ Se edita el archivo ./db/dumps/smart_home.sql
 
 Completá todos los endpoints del backend con los metodos disponibles, los headers y body que recibe, lo que devuelve, ejemplos, etc.
 
-En el archivo ./src/backend/index.js se agregan las siguientes interacciones:
+En el archivo ./src/backend/index.js se agregan los siguientes métodos:
 
 1) Devolver el estado de los dispositivos activos.
 
