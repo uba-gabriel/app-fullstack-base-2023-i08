@@ -154,12 +154,17 @@ En la siguiente ilustración podés ver cómo está organizado el proyecto para 
 ## Detalles de implementación 💻
 
 En esta sección podés ver los detalles específicos de funcionamiento del código y que son los siguientes.
+<br/>
 La aplicación fue editada para permitir listar y además dar de alta y baja los dispositivos registrados en la base de datos.
-Con el botón listar se podrán ver dos listas, una lista de dispositivos dados de alta y otra lista de dispositivos dados de baja. 
+<br/>
+Con el botón listar se podrán ver dos listas, una lista de dispositivos dados de baja y otra lista de dispositivos dados de alta. 
+<br/>
 En total el universo de dispositivos de la base de datos es de seis dispositivos en principio. 
+<br/>
 La base de datos original fue modificada, se cambia un dispositvo por el dispositivo "Parlante 1".
-Además se pueden Insertar y Borrar dispositivos de la base de datos. 
-La base de datos fue modificada, se cambia un dispositvo por el dispositivo "Parlante 1".
+<br/>
+Además se pueden Insertar y Borrar dispositivos de la base de datos de la spa. 
+<br/>
 
 <details><summary><b>Mira los detalles de implementación</b></summary><br>
 
@@ -170,31 +175,47 @@ Completá los pasos para agregar un dispositivo desde el cliente web.
 ### Frontend
 
 Completá todos los detalles sobre cómo armaste el frontend, sus interacciones, etc.
-
+<br/>
 Se editan los archivos:
+<br/>
 ./src/frontend/ts/main.ts
+<br/>
 ./src/frontend/ts/framework.ts
+<br/>
 ./src/frontend/ts/device.ts
+<br/>
 ./src/frontend/ts/httpResponse.ts
+<br/>
 ./src/frontend/static/css/styles.css
+<br/>
 ./README.md
+<br/>
 
 Se agregan los archivos:
+<br/>
 ./frontend/static/images/bocina.png
-
+<br/>
 Se agrega una imagen nueva para usar en el dispositivo "Parlante 1" llamada "bocina.png".
+<br/>
 Se modifica el archivo styles.css para otros formatos de texto.
+<br/>
 Se agrega una funcionalidad al botón "Listar" para que efectue una sentencia de "Select" en la base de datos.
-Se agregan los botones "Dar de baja" y "Dar de alta". Los mismos efectuarán sentencias de "Update" en la base de datos, permitiendo cambiar el estado de los dispositivos de Alta(Devices.state <> 2) a Baja(Devices.state = 2) o viceversa.
+<br/>
+Se agregan los botones "Dar de baja" y "Dar de alta". Los mismos efectuarán sentencias de "Update" en la base 
+de datos, permitiendo cambiar el estado de los dispositivos de Alta(Devices.state <> 2) a Baja(Devices.state = 2) o viceversa.
+<br/>
 Se agrega una funcionalidad al Switch de los dispositivos para que efectue una sentencia de "Update" en la base de datos. Se cambia el estado de Encendido(Devices.state = 1) a Apagado(Devices.state = 0) o viceversa.
-Se corrige que se muestren las listas en forma adicionada.
+<br/>
+Se corrige la pagina para que no se muestren las listas en forma adicionada.
+<br/>
 Se agrega un formulario para agregar dispositivos y otro para borrar dispositivos de la base de datos.
 
 ### Backend
 
 Completá todos los detalles de funcionamiento sobre el backend, sus interacciones con el cliente web, la base de datos, etc.
-
+<br/>
 Se edita el archivo ./src/backend/index.js
+<br/>
 Se edita el archivo ./db/dumps/smart_home.sql
 
 <details><summary><b>Ver los endpoints disponibles</b></summary><br>
