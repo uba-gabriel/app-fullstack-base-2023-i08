@@ -171,13 +171,18 @@ Completá los pasos para agregar un dispositivo desde el cliente web.
 Completá todos los detalles sobre cómo armaste el frontend, sus interacciones, etc.
 
 Se editan los archivos:
-main.ts
-framework.ts
-device.ts
-httpResponse.ts
+./src/frontend/ts/main.ts
+./src/frontend/ts/framework.ts
+./src/frontend/ts/device.ts
+./src/frontend/ts/httpResponse.ts
+./src/frontend/static/css/styles.css
+./README.md
+
+Se agregan los archivos:
+./frontend/static/images/bocina.png
 
 Se agrega una imagen nueva para usar en el dispositivo "Parlante 1" llamada "bocina.png".
-Se modifica el archivo styles.css para otros formatos.
+Se modifica el archivo styles.css para otros formatos de texto.
 Se agrega una funcionalidad al botón "Listar" para que efectue una sentencia de "Select" en la base de datos.
 Se agregan los botones "Eliminar" y "Agregar". Los mismos efectuarán sentencias de "Update" en la base de datos, permitiendo cambiar el estado de los dispositivos de Alta(Devices.state <> 2) a Baja(Devices.state = 2) o viceversa.
 Se agrega una funcionalidad al Switch de los dispositivos para que efectue una sentencia de "Update" en la base de datos. Se cambia el estado de Activo(Devices.state = 1) a Inactivo(Devices.state = 0) o viceversa.
@@ -187,11 +192,14 @@ Se corrige que se muestren las listas en forma adicionada.
 
 Completá todos los detalles de funcionamiento sobre el backend, sus interacciones con el cliente web, la base de datos, etc.
 
-Se edita el archivo index.js
+Se edita el archivo ./src/backend/index.js
+Se edita el archivo ./db/dumps/smart_home.sql
 
 <details><summary><b>Ver los endpoints disponibles</b></summary><br>
 
 Completá todos los endpoints del backend con los metodos disponibles, los headers y body que recibe, lo que devuelve, ejemplos, etc.
+
+En el archivo ./src/backend/index.js se agregan las siguientes interacciones:
 
 1) Devolver el estado de los dispositivos activos.
 
