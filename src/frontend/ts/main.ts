@@ -41,7 +41,7 @@ class Main implements EventListenerObject,HttpResponse {
                           </p>
                           <div class="col s12 m4 l8 xl6 ">
                           <p align="right"> 
-                          <button id="btnEliminar_${disp.id}">Eliminar</button>
+                          <button id="btnEliminar_${disp.id}">Dar de baja</button>
                           </p>
                           </div>
                           <a href="#!" class="secondary-content">
@@ -94,7 +94,7 @@ class Main implements EventListenerObject,HttpResponse {
                 </p>
                 <div class="col s12 m4 l8 xl6 ">
                 <p align="left"> 
-                <button id="btnAgregar_${disp.id}">Agregar</button>
+                <button id="btnAgregar_${disp.id}">Dar de alta</button>
                 </p>
                 </div>`;
 
@@ -113,6 +113,11 @@ class Main implements EventListenerObject,HttpResponse {
         }
 
     }
+
+    manejarRespuesta3(respuesta: string) {
+        var lista: Array<Device> = JSON.parse(respuesta);
+
+    }
     obtenerDispositivo() {
         this.framework.ejecutarBackEnd("GET", "http://localhost:8000/displaydevices",this);
     }    
@@ -126,10 +131,10 @@ class Main implements EventListenerObject,HttpResponse {
         this.framework.ejecutarBackEnd("POST", "http://localhost:8000/putupdevices",this,ident);
     }
     eliminarDispositivo(ident) {
-        this.framework.ejecutarBackEnd("POST", "http://localhost:8000/deletedevices",this,ident);
+        this.framework.ejecutarBackEnd3("POST", "http://localhost:8000/deletedevices",this,ident);
     }    
     insertarDispositivo(ident) {
-        this.framework.ejecutarBackEnd("POST", "http://localhost:8000/insertdevices",this,ident);
+        this.framework.ejecutarBackEnd3("POST", "http://localhost:8000/insertdevices",this,ident);
     }
     teclaDispositivo(presiona) {
         this.framework.ejecutarBackEnd("POST", "http://localhost:8000/changedevices",this,presiona);
@@ -147,13 +152,65 @@ class Main implements EventListenerObject,HttpResponse {
                 //en un parrafo "etiqueta de tipo <p>"
               
             }
+        } else if (event.target.id == "btnBorrar") {
+
+            var ident = <HTMLInputElement>document.getElementById("nom");
+            var identif: string = ident.value;
+
+            if (identif == "") {
+                alert("El nombre del dispositivo a borrar no fue ingresado.");  
+            } else {
+
+            this.eliminarDispositivo({name: identif});
+            this.obtenerBajasDispositivo();
+            this.obtenerDispositivo();
+            alert("El dispositivo "+ identif +" se borra de la base de datos si existe.");
+            for (var user of this.users) {
+                
+                //TODO cambiar ESTO por mostrar estos datos separados por "-" 
+                //en un parrafo "etiqueta de tipo <p>"
+              
+            }
+            }
+        } else if (event.target.id == "btnInsertar") {
+
+            var nom = <HTMLInputElement>document.getElementById("nombre");
+            var desc = <HTMLInputElement>document.getElementById("descri");
+            var tip = <HTMLInputElement>document.getElementById("tipo");
+
+            const randomId = Math.floor(Math.random() * 1000);
+            const randomIdString = randomId.toString();
+            var identif: string = randomIdString;
+            var nombre: string = nom.value;
+            var descrip: string = desc.value;
+            var estad: string = "0";
+            var tipo: string = tip.value;
+            if (nombre == "") {
+                alert("Falta el nombre del dispositivo a insertar.");  
+            } else if (descrip == "") {
+                alert("Falta la descripcion del dispositivo a insertar.");  
+            } else if (tipo == "") {
+                alert("Falta seleccionar el tipo de dispositivo a insertar.");  
+            } else {
+
+            this.insertarDispositivo({id: identif, name: nombre, description: descrip, state: estad, type: tipo});
+            this.obtenerBajasDispositivo();
+            this.obtenerDispositivo();
+            alert("El dispositivo "+ nombre +" se inserta en la base de datos.");
+            for (var user of this.users) {
+                
+                //TODO cambiar ESTO por mostrar estos datos separados por "-" 
+                //en un parrafo "etiqueta de tipo <p>"
+              
+            }
+            }
         } else if (event.target.id == "btnLogin") {
 
             var iUser = <HTMLInputElement>document.getElementById("iUser");
             var iPass = <HTMLInputElement>document.getElementById("iPass");
             var username: string = iUser.value;
             var password: string = iPass.value;
-
+            //alert("el nombre de usuario es " + username);
             if (username.length > 3 && password.length>3) {
                 
                 //iriamos al servidor a consultar si el usuario y la cotraseña son correctas
@@ -217,8 +274,11 @@ window.addEventListener("load", () => {
     var btnListar: HTMLElement = document.getElementById("btnListar");
     btnListar.addEventListener("click", main);
 
-    /*var btnAgregar: HTMLElement = document.getElementById("btnAgregar");
-    btnAgregar.addEventListener("click", main);*/
+    var btnBorrar: HTMLElement = document.getElementById("btnBorrar");
+    btnBorrar.addEventListener("click", main);
+
+    var btnInsertar: HTMLElement = document.getElementById("btnInsertar");
+    btnInsertar.addEventListener("click", main);
 
     var btnLogin = document.getElementById("btnLogin");
     btnLogin.addEventListener("click", main);

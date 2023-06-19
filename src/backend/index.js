@@ -49,8 +49,9 @@ app.get('/displaydowndevices/', function(req,res) {
 app.post('/deletedevices/', function(req,res) {
     // Realiza la operación de actualización en la base de datos
 utils.query(
-  "DELETE FROM Devices WHERE id=" + req.body.id,
-  (error, results) => {
+//  "DELETE FROM Devices WHERE id=" + req.body.id,
+  "DELETE FROM Devices WHERE name='" + req.body.name + "'",
+(error, results) => {
     if (error) {
       console.error('Error al eliminar.', error);
       res.status(409);
@@ -71,7 +72,7 @@ utils.query(
 app.post('/insertdevices/', function(req,res) {
     // Realiza la operación de actualización en la base de datos
 utils.query(
-  "INSERT INTO Devices (id, name, description, state, type) VALUES ("+ req.body.id +","+ req.body.name +","+ req.body.description +","+ req.body.state +","+ req.body.type +")",
+  "INSERT INTO Devices (id, name, description, state, type) VALUES ("+ req.body.id +",'"+ req.body.name +"','"+ req.body.description +"',"+ req.body.state +","+ req.body.type +")",
   (error, results) => {
     if (error) {
       console.error('Error al insertar.', error);

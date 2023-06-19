@@ -48,6 +48,22 @@
                 <div class="row">
                     fila 2
                 </div>
+                <div class="row">
+                    <div class="input-field col s12 m12 l12 xl12">
+                        <textarea id="textarea_1" class="materialize-textarea" style="height: 150px;" readonly></textarea>
+                    </div>
+                    <p class="range-field">
+                        <input type="range" id="test5" min="0" max="100" />
+                      </p>
+                    <div class="input-field col s12">
+                        <select multiple id="c">
+                          <option value="" disabled selected>Elija el dispositivo</option>
+                          <option value="1">dispositivo 1</option>
+                        </select>
+                        <label>Materialize Multiple Select</label>
+
+                    </div>
+                </div>
                 <br />
 
                 <h3>Smart Home Web Client!</h3>
@@ -70,22 +86,48 @@
          
              
                 <br/>
-                <div class="row">
-                    <div class="input-field col s12 m12 l12 xl12">
-                        <textarea id="textarea_1" class="materialize-textarea" style="height: 150px;" readonly></textarea>
-                    </div>
-                    <p class="range-field">
-                        <input type="range" id="test5" min="0" max="100" />
-                      </p>
-                    <div class="input-field col s12">
-                        <select multiple id="c">
-                          <option value="" disabled selected>Elija el dispositivo</option>
-                          <option value="1">dispositivo 1</option>
-                        </select>
-                        <label>Materialize Multiple Select</label>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
 
+                <div> <span class="titulolistasa">Insertar en DB</span> </div>
+                <div class="row">
+                    <div class="col s12 m8 l4 xl6">
+                        <p align="left">
+                    <label for="name">Nombre</label>
+                            <input type="text" id="nombre">
+
+                            <label for="description">Descripción</label>
+                            <input type="text" id="descri">
+
+                            <label for="type">Tipo</label>
+                            <select id="tipo">
+                            <option value="0">Luz</option>
+                            <option value="1">Cortina</option>
+                            <option value="2">Parlante</option>
+                            </select>
+
+                            <button class="btn waves-effect waves-light button-view" id="btnInsertar">Insertar en la base de datos</button>
+                        </p>
                     </div>
                 </div>
+                <br/>
+                <div> <span class="titulolistasb">Borrar en DB</span> </div>
+
+                <div class="row">
+                    <div class="input-field col s12 xl6">
+                        <p align="left">
+                            <label>Nombre del dispositivo</label>
+                            <input type="text" id="nom">
+                            <button class="btn waves-effect waves-light button-view" id="btnBorrar">Borrar de la base de datos</button>
+                        </p>
+                    </div>
+                </div>
+
+                <br/>
+
                 <div >
                     <div class="row">
                       <!-- Switch -->
