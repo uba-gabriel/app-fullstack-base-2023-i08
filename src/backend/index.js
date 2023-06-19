@@ -55,7 +55,29 @@ utils.query(
       console.error('Error al eliminar.', error);
       res.status(409);
     } else {
-        utils.query("select * from Devices where state <> 2",function(err,rsp,fields){
+        utils.query("select * from Devices",function(err,rsp,fields){
+            if(err==null)
+            res.send(JSON.stringify(rsp));
+        else{
+           res.status(409).send("error");
+        }
+        });
+    }
+  }
+);
+
+});
+
+app.post('/insertdevices/', function(req,res) {
+    // Realiza la operación de actualización en la base de datos
+utils.query(
+  "INSERT INTO Devices (id, name, description, state, type) VALUES ("+ req.body.id +","+ req.body.name +","+ req.body.description +","+ req.body.state +","+ req.body.type +")",
+  (error, results) => {
+    if (error) {
+      console.error('Error al insertar.', error);
+      res.status(409);
+    } else {
+        utils.query("select * from Devices",function(err,rsp,fields){
             if(err==null)
             res.send(JSON.stringify(rsp));
         else{

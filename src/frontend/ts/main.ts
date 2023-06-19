@@ -127,6 +127,9 @@ class Main implements EventListenerObject,HttpResponse {
     }
     eliminarDispositivo(ident) {
         this.framework.ejecutarBackEnd("POST", "http://localhost:8000/deletedevices",this,ident);
+    }    
+    insertarDispositivo(ident) {
+        this.framework.ejecutarBackEnd("POST", "http://localhost:8000/insertdevices",this,ident);
     }
     teclaDispositivo(presiona) {
         this.framework.ejecutarBackEnd("POST", "http://localhost:8000/changedevices",this,presiona);

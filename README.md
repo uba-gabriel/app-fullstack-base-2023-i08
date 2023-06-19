@@ -85,6 +85,7 @@ Tené en cuenta que la base de datos se crea con permisos de superusuario por lo
 ## Detalles principales 🔍
 
 En esta sección vas a encontrar las características más relevantes del proyecto.
+La aplicación fue editada para listar y además permitir dar de alta y baja los dispositivos registrados en la base de datos.
 
 <details><summary><b>Mira los detalles más importantes de la aplicación</b></summary><br>
 <br>
@@ -153,6 +154,11 @@ En la siguiente ilustración podés ver cómo está organizado el proyecto para 
 ## Detalles de implementación 💻
 
 En esta sección podés ver los detalles específicos de funcionamiento del código y que son los siguientes.
+La aplicación fue editada para permitir listar y además dar de alta y baja los dispositivos registrados en la base de datos.
+Con el botón listar se podrán ver dos listas, una lista de dispositivos dados de alta y otra lista de dispositivos dados de baja. 
+En total el universo de dispositivos es de seis dispositivos. 
+No se agregan ni se quitan los mismos de la base de datos. 
+La base de datos fue modificada, se cambia un dispositvo por el dispositivo "Parlante 1".
 
 <details><summary><b>Mira los detalles de implementación</b></summary><br>
 
@@ -164,9 +170,24 @@ Completá los pasos para agregar un dispositivo desde el cliente web.
 
 Completá todos los detalles sobre cómo armaste el frontend, sus interacciones, etc.
 
+Se editan los archivos:
+main.ts
+framework.ts
+device.ts
+httpResponse.ts
+
+Se agrega una imagen nueva para usar en el dispositivo "Parlante 1".
+Se modifica el archivo styles.css para otros formatos.
+Se agrega una funcionalidad al botón "Listar" para que efectue una sentencia de "Select" en la base de datos.
+Se agregan los botones "Eliminar" y "Agregar". Los mismos efectuarán sentencias de "Update" en la base de datos, permitiendo cambiar el estado de los dispositivos de Alta(Devices.state <> 2) a Baja(Devices.state = 2) o viceversa.
+Se agrega una funcionalidad al Switch de los dispositivos para que efectue una sentencia de "Update" en la base de datos. Se cambia el estado de Activo(Devices.state = 1) a Inactivo(Devices.state = 0) o viceversa.
+Se corrige que se muestren las listas en forma adicionada.
+
 ### Backend
 
 Completá todos los detalles de funcionamiento sobre el backend, sus interacciones con el cliente web, la base de datos, etc.
+
+Se edita el archivo index.js
 
 <details><summary><b>Ver los endpoints disponibles</b></summary><br>
 
