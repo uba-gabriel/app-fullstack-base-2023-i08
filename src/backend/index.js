@@ -90,6 +90,28 @@ app.post('/putdowndevices/', function(req,res) {
   
 });
 
+app.post('/putupdevices/', function(req,res) {
+    // Realiza la operación de actualización en la base de datos
+utils.query(
+  "UPDATE Devices SET state = 0 WHERE id=" + req.body.id,
+  (error, results) => {
+    if (error) {
+      console.error('Error al dar de alta.', error);
+      res.status(409);
+    } else {
+        utils.query("select * from Devices where state = 2",function(err,rsp,fields){
+            if(err==null)
+            res.send(JSON.stringify(rsp));
+        else{
+           res.status(409).send("error");
+        }
+        });
+    }
+  }
+);
+
+});
+
 app.post('/changedevices/', function(req,res) {
     // Realiza la operación de actualización en la base de datos
 utils.query(
